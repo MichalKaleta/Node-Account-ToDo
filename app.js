@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose= require('mongoose')    ;    /* --dbpath e:/DEV/NODE/MONGO_DATA */
 const setupController = require('./controllers/setup_controller')
+const apiController = require('./controllers/api_controller')
 
 const dbuser = 'test_user';
 const dbpassword ='test_pass';
@@ -26,3 +27,4 @@ app.post('/posted',urlencodedParser,(req,res)=>{
 
 mongoose.connect(connectionString)
 setupController(app);
+apiController(app)
