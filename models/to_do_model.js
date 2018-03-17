@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const todoSchema= new mongoose.Schema({
   username: String,
+  password: String,
   todo: String,
   isDone: Boolean,
   hasAttachment: Boolean

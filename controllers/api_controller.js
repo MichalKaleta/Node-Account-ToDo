@@ -4,17 +4,34 @@ const bodyParser= require('body-parser');
 module.exports=function(app){
 
   app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({extended: true}))
+  var UrlParse= bodyParser.urlencoded({extended: true})
 
   app.get('/api/todos/:user',(req,res)=>{
+
     Todos.find({username: req.params.user},
       (err,todos)=>{
-        
-        if (err) throw err;
-        
-        res.send(todos) 
-       
+         if (err) throw err;
+         res.send(todos)     
     })
+  })
 
+  app.post('/api/todos',UrlParse,(req,res)=>{
+
+    Todos.find({ username: req.body.login, 
+                 password: req.body.password
+               }, (err,todos)=>{
+        
+                  if(err){ 
+                    throw err;
+                    res.send(console.log("dd"));
+                    consle.log("dd");
+                  }
+                  else if(todos.toString()==''){
+                     res.send('<h1>Zły login lub hasło</h1>');
+                   } else {
+                      res.send( todos )
+                     };
+            
+               })
   })
 }

@@ -8,12 +8,14 @@ module.exports= function(app){
     var initialTodos =[
       {
         username: 'Michal',
+        password: 'rambo7',
         todo:'buy Milk',
         isDone: false,
         hasAttachment: false
       },
       {
         username: 'Malwina',
+        passwork: 'grr',
         todo: 'Lenić Się',
         isDone: true,
         hasAttachment: false
