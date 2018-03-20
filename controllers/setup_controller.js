@@ -9,21 +9,27 @@ module.exports= function(app){
       {
         username: 'Michal',
         password: 'rambo7',
-        todo:'buy Milk',
-        isDone: false,
-        hasAttachment: false
+        list: [{
+          todo:'buy Milk',
+          isDone: false,
+          hasAttachment: false
+        },{
+          todo:'sell Milk',
+          isDone: true,
+          hasAttachment: false
+        }]
       },
       {
         username: 'Malwina',
         passwork: 'grr',
-        todo: 'Lenić Się',
-        isDone: true,
-        hasAttachment: false
+        list:[{
+          todo: 'Lenić Się',
+          isDone: true,
+          hasAttachment: false
+        }]
       }
     ];
-  /*   Todos.create(initialTodos,(err,data)=>{
-          res.send(data);
-        }) */
+
     Todos.create(initialTodos,(err,todos)=>{
       res.send(todos);
     })    

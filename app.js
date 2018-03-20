@@ -1,4 +1,5 @@
 const express = require('express');
+const redirect = require('express-redirect');
 const bodyParser = require('body-parser');
 const mongoose= require('mongoose')    ;    /* --dbpath e:/DEV/NODE/MONGO_DATA */
 const setupController = require('./controllers/setup_controller')
@@ -28,3 +29,4 @@ app.post('/posted',urlencodedParser,(req,res)=>{
 mongoose.connect(connectionString)
 setupController(app);
 apiController(app)
+redirect(app)

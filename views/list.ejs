@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -12,22 +13,23 @@
       <div class="row">
         <div class="col-sm-4">
           <h2 class='text-center bg-success'>Add Item</h2>
-          <form method =POST action='/api/todos'>
+          <form method =POST action=<%= '/api/todos/'+items.username %> >
             <div class="form-group">
-              <label for="username">Login:</label>
-              <input  type="text" class="form-control" id="username" name ='login' placeholder="login">
+              <input  type="text" class="form-control" id="additem" name ='additem' placeholder="Enter to do">
             </div>
-           <!--  <div class="form-group">
-              <label for="password">Password:</label>
-              <input  type="text" class="form-control" id="password" name="password" placeholder="password">
-            </div> -->
           </form>
         </div>
         <div class="col-sm-8">
           <h2 class='text-center bg-success'>List Container</h2>
+          <ul class='list-group'>
+            <%- items.list.map(elem=>{ 
+              return `<a href="" class='list-group-item'>${elem.todo}</a>` } ) 
+              %>
+          </ul>
         </div>
       </div>
     </div>
   </body>
 
 </html>
+
