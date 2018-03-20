@@ -22,9 +22,9 @@
         <div class="col-sm-8">
           <h2 class='text-center bg-success'>List Container</h2>
           <ul class='list-group'>
-            <%- items.list.map(elem=>{ 
-              return `<a href="" class='list-group-item'>${elem.todo}</a>` } ) 
-              %>
+            <% items.list.forEach(elem=>{  %>
+               <a href="" class='list-group-item'><%= elem.todo %></a> 
+            <%  } )  %>
           </ul>
         </div>
       </div>
