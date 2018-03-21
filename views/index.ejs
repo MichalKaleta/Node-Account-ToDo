@@ -6,27 +6,53 @@
   <title>Page Title</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
 </head>
 
 <body>
-  <h1 class='text-center bg-primary'>TO DO LIST</h1>
-  <div class="container-fluid">
-    <div class="row">
-      <h2 class='text-center bg-success'>Log In</h2>
-      <form method=POST action='/api/todos'>
-        <div class="form-group">
-          <label for="username">Login:</label>
-          <input type="text" class="form-control" id="username" name='login' placeholder="login">
+  <header class='page-header bg-primary'>
+    <h1 class='text-center '>TO DO LIST</h1>
+  </header>
+  <div class="container">
+    <div style='display: felex' class="row">
+      <div style='padding:0' class="login__card col-sm-4 col-sm-offset-1 panel panel-info">
+        <div class="panel-heading">
+          <h2 class='text-center'>Log In</h2>
         </div>
-        <div class="form-group">
-          <label for="password">Password:</label>
-          <input type="text" class="form-control" id="password" name="password" placeholder="password">
+        <div class="panel-body">
+          <form method=POST action='/api/todos'>
+            <div class="form-group">
+              <label for="username">Username:</label>
+              <input type="text" class="form-control" id="username" name='login' placeholder="username">
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="text" class="form-control" id="password" name="password" placeholder="password">
+            </div>
+            <input type='submit' class='btn btn-info' value='Log In'>
+            <p>test values: </br> login: Michal </br>password: rambo7 </p>
+          </form>
         </div>
-        <p>test values: </br> login: Michal </br>password: rambo7 </p>
-        <input type='submit'>
-      </form>
+      </div>
+      <div style='padding:0; height: 370px ' class="login__card col-sm-4 col-sm-offset-2 panel panel-success">
+        <div class="panel-heading">
+          <h2 class='text-center'>Register</h2>
+        </div>
+        <div class="panel-body">
+          <form method=POST action='/api/register'>
+            <div class="form-group">
+              <label for="username">Username:</label>
+              <input type="text" class="form-control" id="username" name='login' placeholder="username">
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="text" class="form-control" id="password" name="password" placeholder="password">
+            </div>
+            <input type='submit' class='btn btn-success' value='Register'>
+          </form>
+        </div>
+      </div>
     </div>
-  </div>
   </div>
 </body>
 
