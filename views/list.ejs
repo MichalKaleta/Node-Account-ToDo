@@ -6,6 +6,7 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
   </head>
   <body>
     <h1 class='text-center bg-primary'>TO DO LIST</h1>  
@@ -22,9 +23,9 @@
         <div class="col-sm-8">
           <h2 class='text-center bg-success'>List Container</h2>
           <ul class='list-group'>
-            <%- items.list.map(elem=>{ 
-              return `<a href="" class='list-group-item'>${elem.todo}</a>` } ) 
-              %>
+            <% items.list.forEach(elem=>{  %>
+               <a href="" class='list-group-item'><%= elem.todo %></a> 
+            <%  } )  %>
           </ul>
         </div>
       </div>
