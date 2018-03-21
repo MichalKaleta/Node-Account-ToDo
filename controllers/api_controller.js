@@ -29,18 +29,29 @@ module.exports = function (app) {
     Todos.findOneAndUpdate(
       {username: req.params.uname },
       {$push: { list: {todo : req.body.additem} } },
-      {safe: true, upsert: true},
-      (err, todos) => {
-        if (err) {
-          throw err;
-        } else if (todos.toString() == '') {
+      (err, data) => {
+        if (err) throw err;
+        else if (data.toString() == '') {
           res.send('<h1>Zły login lub hasło</h1>');
-        } else {
-          res.render('list',{items: todos})
+        } else{
+          res.redirect( req.params.uname) 
         }
       }
-    )}
+    )
+  }
   )
+   
+  app.get('/api/todos/:uname',(req,res)=>{
+      Todos.find({username: req.params.uname},(err,data)=>{
+          if(err) throw err;
+         
+          else{
+            var data =data[0]
+            res.render('list',{items: data})
+          }
+      })
+  })
+
   app.post('/api/register', urlParse, (req,res)=>{
      if(req.body.login < 5 || req.body.password <5){
        res.send('both Username and Password have to be at least 5 characters long')
@@ -51,7 +62,6 @@ module.exports = function (app) {
           res.send('username already taken')
          }else{
            Todos.create({
-             //$push:{
               username: req.body.login,
               password: req.body.password,
               list:[{
@@ -59,7 +69,6 @@ module.exports = function (app) {
                 isDone: false,
                 hasAttachment: false
               }]  
-              //}
            },(err, data)=>{
              if(err) throw err;
              res.send(data)
