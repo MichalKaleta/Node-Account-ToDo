@@ -1,12 +1,25 @@
 const Todos = require('../models/to_do_model');
 const bodyParser = require('body-parser');
-const url = require('url')
+const url = require('url');
 
 module.exports = function (app) {
 
   app.use(bodyParser.json());
   var urlParse = bodyParser.urlencoded({ extended: true })
  
+  app.delete('/api/todos/:uname/delete',(req,res)=>{
+      Todos.findOneAndUpdate({ 
+        username: req.params.uname
+      },{$pull:{list:{_id: req.body.id}}},
+      (err,data)=>{
+        if(err) throw err;
+        res.send("sdsd")
+      })
+     
+  })
+
+
+
   app.post('/api/todos', urlParse,
   (req, res) => {
     Todos.find({
@@ -23,12 +36,16 @@ module.exports = function (app) {
       }
       }) 
   })
-
+  
+ 
   app.post('/api/todos/:uname',urlParse,
   (req, res) => {
     Todos.findOneAndUpdate(
       {username: req.params.uname },
-      {$push: { list: {todo : req.body.additem} } },
+      {$push: { list: {todo : req.body.additem ,
+                      isDone: true ,
+                      hasAttachment:	false
+       } }},
       (err, data) => {
         if (err) throw err;
         else if (data.toString() == '') {
@@ -77,5 +94,4 @@ module.exports = function (app) {
        })    
      }
   })
-
 }
