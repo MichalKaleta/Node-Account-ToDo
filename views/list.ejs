@@ -16,7 +16,7 @@
         <div class="col-sm-4">
 
           <h2 class='text-center bg-success'>Add Item</h2>
-          
+
           <form method =POST action=<%= '/api/todos/'+items.username %> >
             <div class="form-group">
               <input  type="text" class="form-control" id="additem" name ='additem' placeholder="Enter to do">
@@ -27,7 +27,7 @@
           <h2 class='text-center bg-success'>List Container</h2>
           <ul class='list-group'>
             <% items.list.forEach(elem=>{  %>
-              <li key = <%= elem.id %> onclick="makeRequest('<%= elem.id %>' )" class='list-group-item list-group-item-action'><%= elem.todo %> </li>
+              <li key = <%= elem.id %> onclick="makeRequest('<%= elem.id %>' )" class='list-group-item'><%= elem.todo %> </li>
             <%  } )  %>
           </ul>
         </div>
