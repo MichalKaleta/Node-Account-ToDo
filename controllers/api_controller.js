@@ -18,8 +18,6 @@ module.exports = function (app) {
      
   })
 
-
-
   app.post('/api/todos', urlParse,
   (req, res) => {
     Todos.find({
@@ -32,31 +30,31 @@ module.exports = function (app) {
       } else if (todos.toString() == '') {
         res.send('<h1>Zły login lub hasło</h1>');
       } else {
-        res.render('list',{items: todos[0]})
+        //res.render('list',{items: todos[0]})
+        res.redirect("./todos/"+req.body.login)
       }
       }) 
   })
   
  
   app.post('/api/todos/:uname',urlParse,
-  (req, res) => {
-    Todos.findOneAndUpdate(
-      {username: req.params.uname },
-      {$push: { list: {todo : req.body.additem ,
-                      isDone: true ,
-                      hasAttachment:	false
-       } }},
-      (err, data) => {
-        if (err) throw err;
-        else if (data.toString() == '') {
-          res.send('<h1>Zły login lub hasło</h1>');
-        } else{
-          res.redirect( req.params.uname) 
+    (req, res) => {
+      Todos.findOneAndUpdate(
+        {username: req.params.uname },
+        {$push: { list: {todo : req.body.additem ,
+                        isDone: true ,
+                        hasAttachment:	false
+        } }},
+        (err, data) => {
+          if (err) throw err;
+          else if (data.toString() == '') {
+            res.send('<h1>Zły login lub hasło</h1>');
+          } else{
+            res.redirect( req.params.uname) 
+          }
         }
-      }
-    )
-  }
-  )
+      )
+  })
    
   app.get('/api/todos/:uname',(req,res)=>{
       Todos.find({username: req.params.uname},(err,data)=>{
